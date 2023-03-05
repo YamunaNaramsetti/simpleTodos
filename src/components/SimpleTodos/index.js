@@ -38,7 +38,7 @@ const initialTodosList = [
 
 // Write your code here
 class SimpleTodos extends Component {
-  state: {userTodoList: initialTodosList}
+  state = {userTodoList: initialTodosList}
 
   onDeleteTodo = id => {
     const {userTodoList} = this.state
@@ -48,12 +48,13 @@ class SimpleTodos extends Component {
   }
 
   render() {
+    const {userTodoList} = this.state
     return (
       <div className="cont">
         <div className="inner-cont">
           <h1 className="heading">Simple Todos</h1>
           <ul>
-            {initialTodosList.map(eachTodo => (
+            {userTodoList.map(eachTodo => (
               <TodoItem
                 onDelete={this.onDeleteTodo}
                 todo={eachTodo}
