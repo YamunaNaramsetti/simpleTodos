@@ -38,23 +38,7 @@ const initialTodosList = [
 
 // Write your code here
 class SimpleTodos extends Component {
-  state: {searchInput: '', userTodoList: initialTodosList}
-
-  onChangeSearchInput = event => {
-    this.setState({
-      searchInput: event.target.value,
-    })
-  }
-
-  deleteUser = uniqueNo => {
-    const {usersDetailsList} = this.state
-    const filteredUsersData = usersDetailsList.filter(
-      each => each.uniqueNo !== uniqueNo,
-    )
-    this.setState({
-      usersDetailsList: filteredUsersData,
-    })
-  }
+  state: {userTodoList: initialTodosList}
 
   onDeleteTodo = id => {
     const {userTodoList} = this.state
@@ -64,21 +48,12 @@ class SimpleTodos extends Component {
   }
 
   render() {
-    const {searchInput, usersDetailsList} = this.state
-    const searchResults = usersDetailsList.filter(eachUser =>
-      eachUser.name.includes(searchInput),
-    )
     return (
       <div className="cont">
         <div className="inner-cont">
           <h1 className="heading">Simple Todos</h1>
-          <input
-            type="search"
-            onChange={this.onChangeSearchInput}
-            value={searchInput}
-          />
           <ul>
-            {searchResults.map(eachTodo => (
+            {initialTodosList.map(eachTodo => (
               <TodoItem
                 onDelete={this.onDeleteTodo}
                 todo={eachTodo}
